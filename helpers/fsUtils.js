@@ -1,8 +1,12 @@
 const fs = require('fs');
 const util = require('util');
 
-// Promise version of fs.readFile
+// Promise version of fs.readFile.
+// @param {string} file File to read from. 
+// @param {string} format Format of the return buffer. almost always: 'utf8'
 const readFromFile = util.promisify(fs.readFile);
+
+
 /**
  *  Function to write data to the JSON file given a destination and some content
  *  @param {string} destination The file you want to write to.
@@ -13,6 +17,7 @@ const writeToFile = (destination, content) =>
   fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
     err ? console.error(err) : console.info(`\nData written to ${destination}`)
   );
+  
 /**
  *  Function to read data from a given a file and append some content
  *  @param {object} content The content you want to append to the file.
@@ -31,4 +36,28 @@ const readAndAppend = (content, file) => {
   });
 };
 
-module.exports = { readFromFile, writeToFile, readAndAppend };
+//function to deleteItem in file. 
+// @param {string} id - the id of the item to delete.
+// @param {string} file - the file to delete the item from.
+
+const deleteItem = (id, file) => {
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const parsedData = JSON.parse(data);
+      const newData = [];
+      for (let i=0; i<parsedData.length; i++){
+        
+          if (parsedData[i].id != id){
+
+            newData.push(parsedData[i]);
+          }
+      }
+      writeToFile(file, newData);
+      readFromFile(file);
+    }
+  });
+};
+
+module.exports = { readFromFile, writeToFile, readAndAppend, deleteItem };
