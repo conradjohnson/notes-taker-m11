@@ -1,6 +1,6 @@
 
  [![Github All Releases](https://img.shields.io/github/downloads/conradjohnson/notes-taker-m11/total.svg)]()
- [![GitHub version](https://badge.fury.io/gh/conradjohnson%2Fnotes-taker-m11.svg)](https://github.com/Naereen/notes-taker-m11)
+ [![GitHub version](https://badge.fury.io/gh/conradjohnson%2Fnotes-taker-m11.svg)](https://github.com/conradjohnson/notes-taker-m11)
 
 
 # Notes Taking Application
